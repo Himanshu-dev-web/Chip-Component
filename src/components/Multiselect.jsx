@@ -8,22 +8,26 @@ const Multiselect = () => {
 
   // managing dropdown items (list of dropdown items)
   const [items, setItems] = useState([
-    "JavaScript",
-    "Python",
-    "Java",
-    "C#",
-    "TypeScript",
-    "Swift",
-    "Kotlin",
-    "Rust",
-    "PHP",
-    "HTML",
-    "CSS",
-    "C++",
-    "Objective-C",
-    "Scala",
-    "Shell",
-    "Perl",
+    'John',
+    'Alice',
+    'Bob',
+    'Charlie',
+    'David',
+    'Emma',
+    'Frank',
+    'Grace',
+    'Henry',
+    'Ivy',
+    'Jack',
+    'Katie',
+    'Leo',
+    'Mia',
+    'Nathan',
+    'Olivia',
+    'Paul',
+    'Quinn',
+    'Ryan',
+    'Sophie',
   ]);
 
   const [filteredItems, setFilteredItems] = useState(items);
@@ -63,14 +67,15 @@ const Multiselect = () => {
     else{
       alert("Already Added..")
     }
+
     setDropdown(false);
-    setFilteredItems(item);
+    // setFilteredItems(item);
     setInput("");
   };
 
   // handle back space
   const handleKeyDown = (e) => {
-    if (e.key === "Backspace") {
+    if (e.key === "Backspace" && !input) {
       setSelectedItems([...selectedItems.slice(0, -1)]);
     }
   };
@@ -93,13 +98,18 @@ const Multiselect = () => {
                  
                   <div className="flex flex-auto flex-wrap ">
                     {selectedItems.map((tag, index) => {
+                      const firstChar = tag.charAt(0).toLowerCase();
                       return (
                         <div
                           key={index}
-                          className="flex justify-center items-center m-1 font-medium py-1 px-2 bg-gray-200 rounded-full text-teal-700  border border-teal-300 "
+                          className="flex justify-center items-center m-1 font-medium py-1 px-2 bg-gray-200 rounded-full text-gray-700  border border-gray-300 "
                         >
-                          <div className="text-sm font-bold leading-none max-w-full flex-initial">
-                            {tag}
+                          <div className="text-sm font-bold leading-none max-w-full flex-initial ">
+                          <span
+                          className={`inline-block rounded-full bg-[#6A82FB]  p-4 m-2 text-white`}
+                        >
+                          {firstChar}
+                        </span>{tag}
                           </div>
 
                           <div className="flex flex-auto flex-row-reverse">
@@ -125,22 +135,16 @@ const Multiselect = () => {
                         </div>
                       );
                     })}
-
-
-
                     <div className="flex-1">
                       <input
-                        placeholder="Select Your Favorite Programming Language"
+                        placeholder="Try Typing Your Favorite Programming Language"
                         onChange={(e) => handleSearch(e.target.value)}
                         value={input}
                         onKeyDown={handleKeyDown}
                         className="bg-transparent p-1 px-2 appearance-none outline-none h-full w-full text-gray-800 rounded-3xl"
                       />
                     </div>
-
-
                   </div>
-
                   <div
                     className="text-gray-300 w-8 py-1 pl-2 pr-1 border-l flex items-center border-gray-200"
                     onClick={toogleDropdown}
@@ -152,6 +156,7 @@ const Multiselect = () => {
                 </div>
               </div>
             </div>
+
             {dropdown ? (
               <Dropdown list={filteredItems} addItem={addTag}></Dropdown>
             ) : null}
