@@ -137,7 +137,7 @@ const Multiselect = () => {
                     })}
                     <div className="flex-1">
                       <input
-                        placeholder="Try Typing Your Favorite Programming Language"
+                        placeholder="Try Typing Name"
                         onChange={(e) => handleSearch(e.target.value)}
                         value={input}
                         onKeyDown={handleKeyDown}
